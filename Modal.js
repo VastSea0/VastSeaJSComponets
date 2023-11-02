@@ -1,62 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext'; // AuthContext'ten kullanıcı bilgilerini alın
-import { getAuth, signOut } from "firebase/auth";
-import { app } from "../firebase"; // Fireba
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Table , Row, Col, Form, Button, Modal , Navbar, Nav, NavDropdown} from "react-bootstrap";
 import '../App.css';
-import logo from './Logo.jpeg';
-import "./Dashboard.css"; 
+
 
 
 const HeadMenuVeli = () => {
-    const navigate = useNavigate();
-
-    const handleNavigateToTeachers = () => {
-      navigate("veli/uyeler/ogretmenler");
-    };
-    const handleNavigateToNotification = () => {
-        navigate('/dashboard/veli/notification');
-    };
-    const handleNavigateToDashboardTable = () => {
-      navigate('/dashboard/mytable');
-  };
-    const handleNavigateToMyProfile = () => {
-      navigate('/ben/profilim');
-  };
-   
-    const auth = getAuth(app);
-  
-    const handleSignOut = async () => {
-      try {
-        await signOut(auth);
-       
-        
-        navigate("/");
-      } catch (error) {
-        console.error("Oturumu kapatma hatası:", error);
-      }
-    };
-  
-    const { currentUser } = useAuth(); // Oturum açmış kullanıcının bilgilerini alın
-  
-    // Kullanıcının bilgilerini tutmak için state tanımlayın
-    const [userInfo, setUserInfo] = useState(null);
-  
-    useEffect(() => {
-      if (currentUser) {
-      
-        setUserInfo({
-          displayName: currentUser.displayName,
-          email: currentUser.email,
-          photoURL: currentUser.photoURL,
-        });
-      }
-    }, [currentUser]); // currentUser değiştiğinde useEffect çalışır
-  
-    const daysOfWeek = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'];
-    const hoursOfDay = Array.from({ length: 8 }).map((_, index) => `${index + 1}. Saat`);
+ 
   
     const [show, setShow] = useState(false);
   
